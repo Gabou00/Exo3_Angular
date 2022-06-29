@@ -1,0 +1,62 @@
+<ul>
+  <li *ngFor="let user of users">
+    <div class="background">
+    <div class="card-header"> Utilisateur : {{ user.prenom }} {{ user.nom }}
+    <div class="card"><p>Email : {{ user.email }}</p>
+    <p> Entreprise : {{ user.entreprise }}</p>
+    <p> Téléphone : {{ user.telephone }}</p></div></div></div>
+  </li>
+</ul>
+
+<form [formGroup]="user" (ngSubmit)="onSubmit()">
+  <li>
+    <label for="nom"> Nom : </label> <input type="text" formControlName="nom" />
+  </li>
+  <span *ngIf="form['nom'].invalid"> *Le nom doit faire >= 2 caractères</span>
+  <span *ngIf="form['nom'].untouched && submitted"> *Nom obligatoire</span>
+
+  <li>
+    <label for="prenom"> Prénom : </label>
+    <input type="text" formControlName="prenom" />
+  </li>
+  <span *ngIf="form['prenom'].invalid && submitted">
+    *Le prénom doit faire >= 2 caractères</span
+  >
+  <span *ngIf="form['prenom'].untouched && submitted">
+    *Prénom obligatoire</span
+  >
+
+  <li>
+    <label for="email"> Email : </label>
+    <input type="email" formControlName="email" />
+  </li>
+  <span *ngIf="form['email'].invalid && submitted">
+    *Email au format ***@***.*** requis</span
+  >
+  <span *ngIf="form['email'].untouched && submitted"> *Email obligatoire</span>
+
+  <li>
+    <label for="entreprise"> Entreprise : </label>
+    <input type="text" formControlName="entreprise" />
+  </li>
+  <span *ngIf="form['entreprise'].invalid && submitted">
+    *Le nom de l'entreprise doit faire au moins 2 caractères</span
+  >
+  <span *ngIf="form['entreprise'].untouched && submitted">
+    *Nom de l'entreprise obligatoire</span
+  >
+
+  <li>
+    <label for="telephone"> Téléphone : </label>
+    <input type="tel" formControlName="telephone" />
+  </li>
+  <span *ngIf="form['telephone'].invalid && submitted">
+    *Le n° de téléphone doit avoir 10 chiffres</span
+  >
+  <span *ngIf="form['telephone'].untouched && submitted">
+    *Téléphone obligatoire</span
+  >
+
+  <p></p>
+  <button type="submit" class="button">Ajouter un utilisateur</button>
+</form>
